@@ -1,0 +1,2 @@
+rootProject.name = "OpenLibClient"
+include ':app'
