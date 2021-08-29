@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OpenLibClient</string>
+    <string name="search_text">Найти книги по теме</string>
+    <string name="text_helper_text">Введите тему</string>
 </resources>
