@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class WorkDescr(
     @SerializedName("description")
-    val description: Description,
+    val description: Description?,
     @SerializedName("key")
     val key: String
 )

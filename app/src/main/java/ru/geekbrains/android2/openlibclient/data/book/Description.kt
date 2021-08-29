@@ -6,5 +6,5 @@ data class Description(
     @SerializedName("type")
     val type: String,
     @SerializedName("value")
-    val value: String,
+    val value: String?
 )
