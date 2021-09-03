@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -68,3 +69,14 @@ fun Int.dp(context: Context): Int =
             context.resources.displayMetrics
         )
         .roundToInt()
+
+@Suppress("IMPLICIT_CAST_TO_ANY")
+fun ImageView.setImageFromUri(uri: String, placeholder: Int = 0) {
+    val glideUrl = if (uri.isEmpty()) placeholder else GlideUrl(uri)
+    Glide.with(context)
+        .load(glideUrl)
+        .placeholder(placeholder)
+        .fitCenter()
+        .into(this)
+
+}

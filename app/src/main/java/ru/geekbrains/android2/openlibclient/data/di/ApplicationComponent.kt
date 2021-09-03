@@ -10,6 +10,7 @@ import dagger.android.AndroidInjector
 import ru.geekbrains.android2.openlibclient.App
 import ru.geekbrains.android2.openlibclient.data.di.modules.ApiModule
 import ru.geekbrains.android2.openlibclient.data.di.modules.BooksModule
+import ru.geekbrains.android2.openlibclient.data.di.modules.StorageModule
 import ru.geekbrains.android2.openlibclient.data.di.modules.UIModule
 import ru.geekbrains.android2.openlibclient.scheduler.Schedulers
 import javax.inject.Singleton
@@ -19,7 +20,8 @@ import javax.inject.Singleton
     modules = [AndroidInjectionModule::class,
         UIModule::class,
         ApiModule::class,
-        BooksModule::class]
+        BooksModule::class,
+        StorageModule::class]
 )
 interface ApplicationComponent : AndroidInjector<App> {
 

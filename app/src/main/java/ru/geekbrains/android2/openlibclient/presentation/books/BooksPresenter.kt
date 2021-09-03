@@ -19,11 +19,11 @@ class BooksPresenter @AssistedInject constructor(
     private val disposables = CompositeDisposable()
 
     override fun onFirstViewAttach() {
-        getBooksBySubject("love")
+        getBooksBySubject("cat")
     }
 
     fun displayBook(book: OpenLibBookViewModel) {
-        router.navigateTo(BookScreen(book.key))
+        router.navigateTo(BookScreen(book))
     }
 
     fun getBooksBySubject(subjName: String) {

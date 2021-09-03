@@ -10,5 +10,6 @@ data class Work(
     @SerializedName("cover_id")
     val coverId: Int,
     @SerializedName("authors")
-    val authors: List<Author>
+    val authors: List<Author>,
+    var subjKey: String
 )

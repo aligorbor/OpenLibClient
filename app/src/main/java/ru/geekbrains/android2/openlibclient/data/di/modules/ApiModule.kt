@@ -9,7 +9,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.geekbrains.android2.openlibclient.data.api.DescriptionDeserializer
 import ru.geekbrains.android2.openlibclient.data.api.OpenLibApi
+import ru.geekbrains.android2.openlibclient.data.book.Description
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -22,7 +24,15 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun provideGitHubApi(@Named("openlib_api") baseUrl: String): OpenLibApi =
+    fun provideJson(): Gson =
+        GsonBuilder()
+            .setPrettyPrinting()
+            .registerTypeAdapter(Description::class.java, DescriptionDeserializer())
+            .create()
+
+    @Singleton
+    @Provides
+    fun provideGitHubApi(@Named("openlib_api") baseUrl: String, gson: Gson): OpenLibApi =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(
@@ -36,9 +46,5 @@ class ApiModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(OpenLibApi::class.java)
-
-    private val gson: Gson =
-        GsonBuilder()
-            .create()
 
 }

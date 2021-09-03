@@ -8,10 +8,11 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import moxy.MvpPresenter
 import ru.geekbrains.android2.openlibclient.data.book.OpenLibBookRepository
 import ru.geekbrains.android2.openlibclient.presentation.OpenLibBookDescrViewModel
+import ru.geekbrains.android2.openlibclient.presentation.OpenLibBookViewModel
 import ru.geekbrains.android2.openlibclient.scheduler.Schedulers
 
 class BookPresenter @AssistedInject constructor(
-    @Assisted("key") private val key: String,
+    @Assisted("book") private val book: OpenLibBookViewModel,
     private val bookRepository: OpenLibBookRepository,
     private val router: Router,
     private val schedulers: Schedulers
@@ -23,12 +24,14 @@ class BookPresenter @AssistedInject constructor(
         super.onFirstViewAttach()
         disposables +=
             bookRepository
-                .getBookDescription(key)
+                .getBookDescription(book.key)
                 .map(OpenLibBookDescrViewModel.Mapper::map)
                 .observeOn(schedulers.main())
                 .subscribeOn(schedulers.background())
                 .subscribe(
-                    viewState::showBookDescr,
+                    {
+                        viewState.showBookDescr(it, book)
+                    },
                     viewState::showError
                 )
     }
