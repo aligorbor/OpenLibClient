@@ -38,6 +38,7 @@ class BooksPresenter @AssistedInject constructor(
                     viewState::showBooks,
                     viewState::showError
                 )
+
     }
 
     override fun onDestroy() {

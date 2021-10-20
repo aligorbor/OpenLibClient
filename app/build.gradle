@@ -75,6 +75,7 @@ dependencies {
     implementation "com.google.dagger:dagger:2.37"
     implementation "com.google.dagger:dagger-android:2.37"
     implementation "com.google.dagger:dagger-android-support:2.37"
+
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
 
     kapt "com.github.moxy-community:moxy-compiler:2.2.2"
